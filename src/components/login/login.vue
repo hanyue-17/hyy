@@ -62,8 +62,12 @@ export default{
 			} = res.data
 			
 			if(status===200){
-				this.$message.success(msg);
+				//存token,一参取的key名，二参后台传过来的token数据
+				localStorage.setItem('token',data.token)
+				//跳转路由
 				this.$router.push({name:"home"})
+				//提示成功
+				this.$message.success(msg);
 			}else{
 				this.$message.error(msg);
 			}
