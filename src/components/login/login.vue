@@ -23,31 +23,56 @@ export default{
 	        }
 	    }
 	},
+//	methods:{
+//		//登录请求
+//		handleLogin(){
+//			//接口文件上写的，请求路径：login，请求参数，username,password
+//			this.axios.post('login',this.formdata)
+//				.then((res)=>{
+//					const{
+//						data,
+//						meta:{msg,status}
+//					} = res.data
+//					
+//					//判断
+//					//如果提交成功
+//					if(status===200){
+//						this.$message.success(msg);
+//						this.$router.push({name:"home"})
+//					}else{
+//						//如果提交失败
+//						this.$message.error(msg);
+//					}
+//					
+//					
+//				})
+//		}
+//	}
+	
+	
+	
 	methods:{
 		//登录请求
-		handleLogin(){
-			//接口文件上写的，请求路径：login，请求参数，username,password
-			this.axios.post('login',this.formdata)
-				.then((res)=>{
-					const{
-						data,
-						meta:{msg,status}
-					} = res.data
+		async handleLogin(){
+			const res = await this.axios.post('login',this.formdata)
 					
-					//判断
-					//如果提交成功
-					if(status===200){
-						this.$message.success(msg);
-						this.$router.push({name:"home"})
-					}else{
-						//如果提交失败
-						this.$message.error(msg);
-					}
+			const{
+				data,
+				meta:{msg,status}
+			} = res.data
+			
+			if(status===200){
+				this.$message.success(msg);
+				this.$router.push({name:"home"})
+			}else{
+				this.$message.error(msg);
+			}
 					
-					
-				})
 		}
 	}
+	
+	
+	
 }
 </script>
 
